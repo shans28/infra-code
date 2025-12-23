@@ -21,3 +21,19 @@ resource "aws_eks_cluster" "eks_cluster" {
   }*/
 
 }
+locals {
+  create = var.create
+}
+
+resource "aws_eks_addon" "this" {
+  for_each = { for k, v in var.cluster_addons : k => v if local.create }
+
+  cluster_name = aws_eks_cluster.eks_cluster.name
+  addon_name   = try(each.value.name, each.key)
+
+  addon_version            		= lookup(each.value, "addon_version", null)
+  resolve_conflicts_on_create   = lookup(each.value, "resolve_conflicts", null)
+  service_account_role_arn    = lookup(each.value, "service_account_role_arn", null)
+
+  tags = var.eks_cluster_tags
+}

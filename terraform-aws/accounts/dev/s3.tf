@@ -222,38 +222,11 @@ module "s3_video_analytics_sse_configuration" {
 }
 
 
-module "s3_event_notification_lambda_demo" {
-    source = "../../modules/s3/s3_bucket_notification"
+# module "s3_event_notification_lambda_demo" {
+#     source = "../../modules/s3/s3_bucket_notification"
 
-    bucket_name = module.s3_video_analytics_demo.s3_bucket_account_id
-    eventbridge_enabled = var.s3_event_notification_demo_eventbridge_enabled
-
-    lambda_function1_events = var.s3_event_notification_call_transcribe_for_all_speaker_at_one_audio_demo_events
-    lambda_function1_filter_prefix = var.s3_event_notification_call_transcribe_for_all_speaker_at_one_audio_demo_filter_prefix
-    lambda_function1_filter_suffix = var.s3_event_notification_call_transcribe_for_all_speaker_at_one_audio_demo_filter_suffix
-    lambda_function1_id = var.s3_event_notification_call_transcribe_for_all_speaker_at_one_audio_demo_id
-    lambda_function1_lambda_function_arn = module.lambda_call_transcribe_demo.arn
-
-    lambda_function2_events = var.s3_event_notification_parse_composed_json_to_table_demo_events
-    lambda_function2_filter_prefix = var.s3_event_notification_parse_composed_json_to_table_demo_filter_prefix
-    lambda_function2_filter_suffix = var.s3_event_notification_parse_composed_json_to_table_demo_filter_suffix
-    lambda_function2_id = var.s3_event_notification_parse_composed_json_to_table_demo_id
-    lambda_function2_lambda_function_arn = module.lambda_parse_composed_json_to_tables_demo.arn
-
-    lambda_function3_events = var.s3_event_notification_fetch_twilio_room_id_demo_events
-    lambda_function3_filter_prefix = var.s3_event_notification_fetch_twilio_room_id_demo_filter_prefix
-    lambda_function3_filter_suffix = var.s3_event_notification_fetch_twilio_room_id_demo_filter_suffix
-    lambda_function3_id = var.s3_event_notification_fetch_twilio_room_id_demo_id
-    lambda_function3_lambda_function_arn = module.lambda_composed_video_demo.arn
-
-    lambda_function4_events = var.s3_event_notification_transcription_analytics_demo_file_path_events
-    lambda_function4_filter_prefix = var.s3_event_notification_transcription_analytics_demo_file_path_filter_prefix
-    lambda_function4_filter_suffix = var.s3_event_notification_transcription_analytics_demo_file_path_filter_suffix
-    lambda_function4_id = var.s3_event_notification_transcription_analytics_demo_file_path_id
-    lambda_function4_lambda_function_arn = module.lambda_transcription_analytics_file_path_demo.arn
-    depends_on = [module.lambda_composed_video_demo_s3_triggers,module.lambda_call_transcribe_demo_s3_triggers,module.lambda_parse_composed_json_to_tables_demo_s3_triggers,
-    module.lambda_transcription_analytics_file_path_demo_s3_triggers]
-}
+#     bucket_name = module.s3_video_analytics_demo.s3_bucket_account_id
+# }
 
 module "s3_video_analytics_review" {
   source = "../../modules/s3/s3_bucket"
@@ -271,38 +244,12 @@ module "s3_video_analytics_review" {
   enabled                 = var.s3_video_analytics_review_enabled                 # true
 }
 
-module "s3_event_notification_lambda_review" {
-    source = "../../modules/s3/s3_bucket_notification"
+# module "s3_event_notification_lambda_review" {
+#     source = "../../modules/s3/s3_bucket_notification"
 
-    bucket_name = module.s3_video_analytics_review.s3_bucket_account_id
-    eventbridge_enabled = var.s3_event_notification_review_eventbridge_enabled
-
-    lambda_function1_events = var.s3_event_notification_call_transcribe_for_all_speaker_at_one_audio_review_events
-    lambda_function1_filter_prefix = var.s3_event_notification_call_transcribe_for_all_speaker_at_one_audio_review_filter_prefix
-    lambda_function1_filter_suffix = var.s3_event_notification_call_transcribe_for_all_speaker_at_one_audio_review_filter_suffix
-    lambda_function1_id = var.s3_event_notification_call_transcribe_for_all_speaker_at_one_audio_review_id
-    lambda_function1_lambda_function_arn = module.lambda_review_call_transcribe.arn
-
-    lambda_function2_events = var.s3_event_notification_parse_composed_json_to_table_review_events
-    lambda_function2_filter_prefix = var.s3_event_notification_parse_composed_json_to_table_review_filter_prefix
-    lambda_function2_filter_suffix = var.s3_event_notification_parse_composed_json_to_table_review_filter_suffix
-    lambda_function2_id = var.s3_event_notification_parse_composed_json_to_table_review_id
-    lambda_function2_lambda_function_arn = module.lambda_review_parse_composed_json_to_tables.arn
-
-    lambda_function3_events = var.s3_event_notification_fetch_twilio_room_id_review_events
-    lambda_function3_filter_prefix = var.s3_event_notification_fetch_twilio_room_id_review_filter_prefix
-    lambda_function3_filter_suffix = var.s3_event_notification_fetch_twilio_room_id_review_filter_suffix
-    lambda_function3_id = var.s3_event_notification_fetch_twilio_room_id_review_id
-    lambda_function3_lambda_function_arn = module.lambda_review_composed_video.arn
-
-    lambda_function4_events = var.s3_event_notification_transcription_analytics_review_file_path_events
-    lambda_function4_filter_prefix = var.s3_event_notification_transcription_analytics_review_file_path_filter_prefix
-    lambda_function4_filter_suffix = var.s3_event_notification_transcription_analytics_review_file_path_filter_suffix
-    lambda_function4_id = var.s3_event_notification_transcription_analytics_review_file_path_id
-    lambda_function4_lambda_function_arn = module.lambda_review_transcription_analytics_file_path.arn
-    /*depends_on = [module.lambda_composed_video_review_s3_triggers,module.lambda_call_transcribe_review_s3_triggers,module.lambda_parse_composed_json_to_tables_review_s3_triggers,
-    module.lambda_transcription_analytics_file_path_review_s3_triggers]*/
-}
+#     bucket_name = module.s3_video_analytics_review.s3_bucket_account_id
+    
+# }
 resource "aws_s3_bucket" "public_bucketcreation" {
   bucket        = var.public_template_bucket_name                                             #null
   force_destroy = var.public_template_bucket_force_destroy    

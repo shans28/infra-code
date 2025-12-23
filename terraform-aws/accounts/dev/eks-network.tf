@@ -159,45 +159,6 @@ module "eks_cluster_apps_private_nat_gateway" {
   ]
 }
 
-/*
-#security group
-module "eks_cluster_apps_load_balancer_security_group" {
-
-  source = "../../modules/security_group"
-
-  description              = var.eks_cluster_apps_load_balancer_security_group_description
-  egress_cidr_blocks       = var.eks_cluster_apps_load_balancer_security_group_egress_cidr_blocks
-  egress_description       = var.eks_cluster_apps_load_balancer_security_group_egress_description
-  egress_from_port         = var.eks_cluster_apps_load_balancer_security_group_egress_from_port
-  egress_ipv6_cidr_blocks  = var.eks_cluster_apps_load_balancer_security_group_egress_ipv6_cidr_blocks
-  egress_prefix_list_ids   = var.eks_cluster_apps_load_balancer_security_group_egress_prefix_list_ids
-  egress_protocol          = var.eks_cluster_apps_load_balancer_security_group_egress_protocol
-  egress_security_groups   = var.eks_cluster_apps_load_balancer_security_group_egress_security_groups
-  egress_self              = var.eks_cluster_apps_load_balancer_security_group_egress_self
-  egress_to_port           = var.eks_cluster_apps_load_balancer_security_group_egress_to_port
-  ingress_cidr_blocks      = var.eks_cluster_apps_load_balancer_security_group_ingress_cidr_blocks
-  ingress_description      = var.eks_cluster_apps_load_balancer_security_group_ingress_description
-  ingress_from_port        = var.eks_cluster_apps_load_balancer_security_group_ingress_from_port
-  ingress_ipv6_cidr_blocks = var.eks_cluster_apps_load_balancer_security_group_ingress_ipv6_cidr_blocks
-  ingress_prefix_list_ids  = var.eks_cluster_apps_load_balancer_security_group_ingress_prefix_list_ids
-  ingress_protocol         = var.eks_cluster_apps_load_balancer_security_group_ingress_protocol
-  ingress_security_groups  = var.eks_cluster_apps_load_balancer_security_group_ingress_security_groups
-  ingress_self             = var.eks_cluster_apps_load_balancer_security_group_ingress_self
-  ingress_to_port          = var.eks_cluster_apps_load_balancer_security_group_ingress_to_port
-  name                     = var.eks_cluster_apps_load_balancer_security_group_name
-  tags                     = merge({
-        "elbv2.k8s.aws/cluster"    = "eks-dev-core-001-apps"
-        "ingress.k8s.aws/resource" = "ManagedLBSecurityGroup"
-        "ingress.k8s.aws/stack"    = "prj1-apps"
-    })
-  tags_all                 = merge({
-        "elbv2.k8s.aws/cluster"    = "eks-dev-core-001-apps"
-        "ingress.k8s.aws/resource" = "ManagedLBSecurityGroup"
-        "ingress.k8s.aws/stack"    = "prj1-apps"
-    })
-  vpc_id                   = var.eks_cluster_apps_vpc_id
-}
-*/
 
 #security_group_rule
 module "eks_cluster_apps_security_group_rule_allow_vpc_ingress_to_cluster" {

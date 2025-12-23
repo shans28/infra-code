@@ -67,3 +67,14 @@ variable "eks_cluster_kubernetes_network_config_service_ipv4_cidr" {
   type        = string
   description = "The CIDR block to assign Kubernetes service IP addresses from. If you don't specify a block, Kubernetes assigns addresses from either the 10.100.0.0/16 or 172.20.0.0/16 CIDR blocks.Within one of the following private IP address blocks: 10.0.0.0/8, 172.16.0.0/12, or 192.168.0.0/16.Doesn't overlap with any CIDR block assigned to the VPC that you selected for VPC."
 }
+ variable "cluster_addons" {
+  description = "Map of cluster addon configurations to enable for the cluster. Addon name can be the map keys or set with `name`"
+  type        = any
+  default     = {}
+}
+
+variable "create" {
+  description = "Controls if EKS resources should be created (affects nearly all resources)"
+  type        = bool
+  default     = true
+}
