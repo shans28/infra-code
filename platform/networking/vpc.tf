@@ -1,12 +1,10 @@
 module "vpc" {
-  source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 6.6.0"
-  #   region = "us-west-2"
+  source                       = "terraform-aws-modules/vpc/aws"
+  version                      = "~> 6.6.0"
   name                         = var.vpc_name
   create_vpc                   = var.create_vpc
   cidr                         = local.vpc_cidr
   azs                          = local.azs
-  enable_ipv6                  = var.create_vpc
   enable_nat_gateway           = var.enable_nat_gateway
   single_nat_gateway           = var.single_nat_gateway
   one_nat_gateway_per_az       = var.one_nat_gateway_per_az
