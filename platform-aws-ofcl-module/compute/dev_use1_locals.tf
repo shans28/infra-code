@@ -39,5 +39,15 @@ locals {
       }
     }
   }
+  instances = {
+    jserver1 = {
+      type = "t3.medium"
+      env  = "prod"
+    }
+    jserver2 = {
+      type = "t3.micro"
+      env  = "dev"
+    }
+  }
 }
  
